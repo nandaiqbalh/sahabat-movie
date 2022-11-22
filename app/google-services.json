@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "184722999155",
+    "project_id": "sahabat-movie",
+    "storage_bucket": "sahabat-movie.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184722999155:android:c649da2b4eddda3dfde706",
+        "android_client_info": {
+          "package_name": "com.nandaiqbalh.sahabatmovie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "184722999155-cb27m7fgcku29tscncpg5008am7nsmts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD504knRNKF5v8netiIuADADtOVOI4Pk2Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "184722999155-cb27m7fgcku29tscncpg5008am7nsmts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
