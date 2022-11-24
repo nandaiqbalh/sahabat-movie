@@ -1,4 +1,4 @@
-package com.nandaiqbalh.sahabatmovie.presentation.ui.movie.home.adapter
+package com.nandaiqbalh.sahabatmovie.presentation.ui.movie.search.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,18 +10,12 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.nandaiqbalh.sahabatmovie.data.network.model.search.SearchItem
 import com.nandaiqbalh.sahabatmovie.databinding.ItemSearchMovieBinding
 
-class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
+class SearchAdapter(private val itemClick: (SearchItem) -> Unit) : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
-    private lateinit var onItemClickCallBack: OnItemClickCallBack
-
-    fun setOnItemClickCallback(onItemClickCallBack: OnItemClickCallBack) {
-        this.onItemClickCallBack = onItemClickCallBack
-    }
     private val diffCallback = object : DiffUtil.ItemCallback<SearchItem>() {
         override fun areItemsTheSame(oldItem: SearchItem, newItem: SearchItem): Boolean {
             return oldItem.id == newItem.id
         }
-
         override fun areContentsTheSame(oldItem: SearchItem, newItem: SearchItem): Boolean {
             return oldItem.hashCode() == newItem.hashCode()
         }
@@ -29,40 +23,41 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     private val differ = AsyncListDiffer(this, diffCallback)
 
-    fun setList(movie: List<SearchItem?>?) {
+    fun submitList(movie: List<SearchItem>?) {
         differ.submitList(movie)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val binding = ItemSearchMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return SearchViewHolder(binding)
+        return SearchViewHolder(binding, itemClick)
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.bindView(differ.currentList[position])
+        holder.bind(differ.currentList[position])
     }
 
     override fun getItemCount(): Int = differ.currentList.size
 
-    inner class SearchViewHolder(private val binding: ItemSearchMovieBinding) :
+    inner class SearchViewHolder(private val binding: ItemSearchMovieBinding, private val itemClick: (SearchItem) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
-
-        fun bindView(item: SearchItem) {
+        fun bind(item: SearchItem) {
             with(binding) {
-                Glide.with(itemView)
-                    .load(IMAGE_URL + item.posterPath)
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .into(ivPosterMovie)
-                tvTitleMovie.text = item.title
+                with(item) {
+                    Glide.with(itemView)
+                        .load(IMAGE_URL + posterPath)
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .into(ivPoster)
+                    tvTitle.text = title
+
+                    itemView.setOnClickListener {
+                        itemClick(this)
+                    }
+                }
             }
         }
     }
 
     companion object {
         private const val IMAGE_URL = "https://image.tmdb.org/t/p/w500"
-    }
-
-    interface OnItemClickCallBack {
-        fun onItemClicked(data: SearchItem)
     }
 }

@@ -24,4 +24,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_update_profile">Perbarui Profil</string>
     <string name="title_official_website">Website resmi:</string>
+    <string name="hint_search">Telusuri</string>
 </resources>
