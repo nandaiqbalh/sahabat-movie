@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.ui.movie.detail.DetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_movie_image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="fitXY"
+            android:foreground="@drawable/landscape_image_gradient"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_movie_title"
+            style="@style/paddingHorizontal"
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_movie_image"
+            tools:text="Joker" />
+
+        <TextView
+            android:id="@+id/tv_tagline"
+            style="@style/paddingHorizontal"
+            android:textAlignment="center"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="An offer you can't refuse." />
+
+        <TextView
+            android:id="@+id/tv_genre_lang_release"
+            style="@style/paddingHorizontal"
+            android:textAlignment="center"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tagline"
+            tools:text="Adventure, Fantasy | English | 2022" />
+
+        <TextView
+            android:id="@+id/title_overview"
+            style="@style/paddingHorizontal"
+            android:layout_marginTop="25dp"
+            android:textSize="18sp"
+            android:text="@string/title_overview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_genre_lang_release"
+            tools:text="This is overview"/>
+
+        <TextView
+            android:id="@+id/tv_overview"
+            style="@style/paddingHorizontal"
+            android:paddingVertical="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_overview"
+            tools:text="This is overview"/>
+
+        <TextView
+            android:id="@+id/tv_rating"
+            style="@style/paddingHorizontal"
+            android:paddingVertical="12dp"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_overview"
+            tools:text="Rating: 8.8"
+            app:drawableEndCompat="@drawable/ic_star"
+            android:drawablePadding="6dp"/>
+
+        <TextView
+            android:id="@+id/title_official_web"
+            style="@style/paddingHorizontal"
+            android:text="@string/title_official_website"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_rating" />
+
+        <TextView
+            android:id="@+id/tv_official_web"
+            style="@style/paddingHorizontal"
+            android:linksClickable="true"
+            android:autoLink="web"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_official_web"
+            tools:text="https://thegodfather.com"/>
+
+        <ProgressBar
+            android:id="@+id/pb_home_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Empty" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

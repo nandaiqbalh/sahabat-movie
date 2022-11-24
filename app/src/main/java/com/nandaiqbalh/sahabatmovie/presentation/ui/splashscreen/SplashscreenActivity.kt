@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nandaiqbalh.sahabatmovie.R
-import com.nandaiqbalh.sahabatmovie.presentation.ui.user.UserActivity
+import com.nandaiqbalh.sahabatmovie.presentation.ui.user.MainActivity
 
 class SplashscreenActivity : AppCompatActivity() {
 
@@ -17,7 +17,7 @@ class SplashscreenActivity : AppCompatActivity() {
         val splashViewModel = ViewModelProviders.of(this).get(SplashscreenViewModel::class.java)
         splashViewModel.liveData.observe(this, Observer {
             when (it) {
-                is SplashState.UserActivity -> {
+                is SplashState.MainActivity -> {
                     goToMainActivity()
                 }
             }
@@ -26,6 +26,6 @@ class SplashscreenActivity : AppCompatActivity() {
 
     private fun goToMainActivity() {
         finish()
-        startActivity(Intent(this, UserActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }

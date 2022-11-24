@@ -1,0 +1,106 @@
+package com.nandaiqbalh.sahabatmovie.data.repository
+
+import com.nandaiqbalh.sahabatmovie.data.network.datasource.MovieRemoteDataSource
+import com.nandaiqbalh.sahabatmovie.data.network.model.HomeMovieItem
+import com.nandaiqbalh.sahabatmovie.data.network.model.detail.DetailMovie
+import com.nandaiqbalh.sahabatmovie.data.network.model.search.Search
+import com.nandaiqbalh.sahabatmovie.wrapper.Resource
+
+interface MovieRepository {
+    suspend fun getPopular(): Resource<List<HomeMovieItem>>
+    suspend fun getTopRated(): Resource<List<HomeMovieItem>>
+    suspend fun getUpcoming(): Resource<List<HomeMovieItem>>
+    suspend fun searchMovie(query: String): Resource<Search>
+    suspend fun getDetail(id: Int): Resource<DetailMovie>
+}
+
+class MovieRepositoryImpl(private val dataSource: MovieRemoteDataSource): MovieRepository {
+    override suspend fun getPopular(): Resource<List<HomeMovieItem>> {
+        return proceed {
+            dataSource.getPopular().results?.map {
+                HomeMovieItem(
+                    adult = it.adult,
+                    backdropPath = it.backdropPath,
+                    genreIds = it.genreIds,
+                    id = it.id,
+                    originalLanguage = it.originalLanguage,
+                    originalTitle = it.originalTitle,
+                    overview = it.overview,
+                    popularity = it.popularity,
+                    posterPath = it.posterPath,
+                    releaseDate = it.releaseDate,
+                    title = it.title,
+                    video = it.video,
+                    voteAverage = it.voteAverage,
+                    voteCount = it.voteCount
+                ) }!!
+        }
+    }
+
+    override suspend fun getTopRated(): Resource<List<HomeMovieItem>> {
+        return proceed {
+            dataSource.getTopRated().results?.map {
+                HomeMovieItem(
+                    adult = it.adult,
+                    backdropPath = it.backdropPath,
+                    genreIds = it.genreIds,
+                    id = it.id,
+                    originalLanguage = it.originalLanguage,
+                    originalTitle = it.originalTitle,
+                    overview = it.overview,
+                    popularity = it.popularity,
+                    posterPath = it.posterPath,
+                    releaseDate = it.releaseDate,
+                    title = it.title,
+                    video = it.video,
+                    voteAverage = it.voteAverage,
+                    voteCount = it.voteCount
+                ) }!!
+        }
+    }
+
+    override suspend fun getUpcoming(): Resource<List<HomeMovieItem>> {
+        return proceed {
+            dataSource.getUpcoming().results?.map {
+                HomeMovieItem(
+                    adult = it.adult,
+                    backdropPath = it.backdropPath,
+                    genreIds = it.genreIds,
+                    id = it.id,
+                    originalLanguage = it.originalLanguage,
+                    originalTitle = it.originalTitle,
+                    overview = it.overview,
+                    popularity = it.popularity,
+                    posterPath = it.posterPath,
+                    releaseDate = it.releaseDate,
+                    title = it.title,
+                    video = it.video,
+                    voteAverage = it.voteAverage,
+                    voteCount = it.voteCount
+                ) }!!
+        }
+    }
+
+    override suspend fun searchMovie(query: String): Resource<Search> {
+        return try {
+            val data = dataSource.searchMovie(query)
+            if (data.results.isNullOrEmpty()) Resource.Empty() else Resource.Success(data)
+        } catch (exception: Exception) {
+            Resource.Error(exception)
+        }
+    }
+
+    override suspend fun getDetail(id: Int): Resource<DetailMovie> {
+        return proceed {
+            dataSource.getDetail(id)
+        }
+    }
+
+    private suspend fun <T> proceed(coroutines: suspend () -> T): Resource<T> {
+        return try {
+            Resource.Success(coroutines.invoke())
+        } catch (e: Exception) {
+            Resource.Error(e)
+        }
+    }
+}
