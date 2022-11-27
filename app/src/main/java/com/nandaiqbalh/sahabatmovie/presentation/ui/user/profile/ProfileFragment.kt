@@ -12,6 +12,8 @@ import com.nandaiqbalh.sahabatmovie.R
 import com.nandaiqbalh.sahabatmovie.data.local.model.user.UserEntity
 import com.nandaiqbalh.sahabatmovie.databinding.FragmentProfileBinding
 import com.nandaiqbalh.sahabatmovie.di.UserServiceLocator
+import com.nandaiqbalh.sahabatmovie.presentation.ui.about.AboutAppActivity
+import com.nandaiqbalh.sahabatmovie.presentation.ui.about.AboutDevActivity
 import com.nandaiqbalh.sahabatmovie.presentation.ui.user.MainActivity
 import com.nandaiqbalh.sahabatmovie.util.viewModelFactory
 
@@ -53,6 +55,26 @@ class ProfileFragment : Fragment() {
             viewModel.setIfUserLogin(false)
             startActivity(Intent(requireContext(), MainActivity::class.java))
             activity?.finish()
+        }
+
+//        binding.btnAboutApp.setOnClickListener {
+//            val options = NavOptions.Builder()
+//                .setPopUpTo(R.id.aboutAppActivity, false)
+//                .build()
+//            findNavController().navigate(R.id.action_profileFragment_to_aboutAppActivity, null, options)
+//        }
+//
+//        binding.btnAboutDev.setOnClickListener {
+//            val options = NavOptions.Builder()
+//                .setPopUpTo(R.id.aboutDevActivity, false)
+//                .build()
+//            findNavController().navigate(R.id.action_profileFragment_to_aboutDevActivity, null, options)
+//        }
+        binding.btnAboutApp.setOnClickListener {
+            startActivity(Intent(requireContext(), AboutAppActivity::class.java))
+        }
+        binding.btnAboutDev.setOnClickListener {
+            startActivity(Intent(requireContext(), AboutDevActivity::class.java))
         }
     }
 
