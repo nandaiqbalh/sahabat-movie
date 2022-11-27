@@ -77,7 +77,7 @@ class UpdateProfileFragment : Fragment() {
     private fun parseFormIntoData(): UserEntity {
         return UserEntity(
             username = binding.etUsername.text.toString().trim(),
-            email = binding.etUsername.text.toString().trim(),
+            email = binding.etEmail.text.toString().trim(),
             fullName = binding.etFullName.text.toString().trim(),
             dateOfBirth = binding.etDateOfBirth.text.toString().trim(),
             address = binding.etAddress.text.toString().trim()
