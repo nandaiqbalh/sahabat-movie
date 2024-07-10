@@ -1,3 +1,5 @@
+![sahabat movie](https://github.com/nandaiqbalh/sahabat-movie/assets/70440045/cb70ab51-bfb6-4a1a-9303-0b951df3d500)
+
 # SahabatMoview
 Sahabat Movie is an application designed to cater to the needs of movie enthusiasts. It provides various features such as lists of popular movies, top-rated movies, and upcoming movie releases. Additionally, users can utilize the search function within the application to find specific movies they are interested in.
 
